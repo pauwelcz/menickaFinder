@@ -27,8 +27,7 @@ const homeDir = __dirname;
     const dateTodayParsed = {
         day: dateToday.getDate(),
         month: dateToday.getMonth() + 1,
-        year: dateToday.getFullYear(),
-        dayInWeek: dateToday.getDay(),
+        year: dateToday.getFullYear()
     }
 
     const menuObjects = [];
