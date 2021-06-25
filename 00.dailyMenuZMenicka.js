@@ -6,7 +6,7 @@ const printer = require('./lib/printModules.js');
 */
 const program = require('commander')
     program
-        .option('-r, --restaurants <string>', 'File of objects with restaurants', './data/restaurants.json')
+        .option('-r, --restaurants <string>', 'Path to of objects with restaurants', './data/restaurants.json')
         .option('-o, --output <string>', 'Parameter for saving file, if parameter is not set, output is printed to console.', '')
         .option('-n, --name <string>', 'Parameter for name of file (in combination with parameter output), if parameter is not set, name of file is in format "DD-MM-YYYY.txt".', '')
         .parse(process.argv);
