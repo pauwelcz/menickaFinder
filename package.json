@@ -1,0 +1,27 @@
+{
+  "name": "cloudtalkapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
+    "commander": "^2.19.0",
+    "got": "^11.8.2",
+    "iconv-lite": "^0.6.3",
+    "mkdirp": "^1.0.4",
+    "node-fetch": "^2.6.1",
+    "path": "^0.12.7",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "windows-1250": "^1.0.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "description": ""
+}
