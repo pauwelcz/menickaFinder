@@ -11,7 +11,12 @@ const program = require('commander')
         .option('-n, --name <string>', 'Parameter for name of file (in combination with parameter output), if parameter is not set, name of file is in format "DD-MM-YYYY.txt".', '')
         .parse(process.argv);
 
-const restaurants = require(`${program.restaurants}`);
+try {
+    const restaurants = require(`${program.restaurants}`);
+} catch (e) {
+    console.error(e);
+    process.exit()
+}
 
 /**
     FILE PREPARINGS
