@@ -42,12 +42,13 @@ const homeDir = __dirname;
      */
     const menuObjects = [];
     for (const object of restaurants) {
-        menuObjects.push(await parser.menickaParser(object, dateTodayParsed));
+        menuObjects.push(parser.menickaParser(object, dateTodayParsed));
     }
 
     /**
      * Vytisknutí buď do souboru nebo na obrazovku
      */
-     await printer.printMenu(menuObjects, dateTodayParsed, fileDirectory, fileName, homeDir);
+     await printer.printMenu(await Promise.all(menuObjects), dateTodayParsed, fileDirectory, fileName, homeDir);
+
      process.exit();
 })();

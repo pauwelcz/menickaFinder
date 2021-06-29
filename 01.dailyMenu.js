@@ -34,20 +34,20 @@ const homeDir = __dirname;
     /**
      * Restaurace VERONA
      */
-    menuObjects.push(await parser.menickaParser(restaurants[2], dateTodayParsed));
+    menuObjects.push(parser.menickaParser(restaurants[2], dateTodayParsed));
     /**
      * Restaurace Suzie
      */
-    menuObjects.push(await parser.suziesCheerioParser(restaurants[1], dateTodayParsed));
+    menuObjects.push(parser.suziesCheerioParser(restaurants[1], dateTodayParsed));
 
     /**
      * Restaurace u Čápa
      */
-    menuObjects.push(await parser.uCapaCheriioParser(restaurants[0], dateTodayParsed));
+    menuObjects.push(parser.uCapaCheriioParser(restaurants[0], dateTodayParsed));
 
     /**
      * Vytisknutí buď do souboru nebo na obrazovku
      */
-    await printModules.printMenu(menuObjects, dateTodayParsed, fileDirectory, fileName, homeDir);
+    await printModules.printMenu(await Promise.all(menuObjects), dateTodayParsed, fileDirectory, fileName, homeDir);
     process.exit();
 })();
