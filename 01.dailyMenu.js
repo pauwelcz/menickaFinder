@@ -1,6 +1,7 @@
 'use strict';
 const parser = require('./lib/parsersWithPredefinedModules.js');
 const printModules = require('./lib/printModules.js');
+const timeHelper = require('./lib/timeHelper.js');
 /*
 	COMMANDER
 */
@@ -23,12 +24,7 @@ const homeDir = __dirname;
     /**
      * Ziskani spravneho datumu + dne v týdnu (v případě některých webů se snáze parsuje)
      */
-    const dateToday = new Date();
-    const dateTodayParsed = {
-        day: dateToday.getDate(),
-        month: dateToday.getMonth() + 1,
-        year: dateToday.getFullYear()
-    }
+    const dateTodayParsed = timeHelper.returnTodayAsObject();
 
     const menuObjects = [];
     /**
