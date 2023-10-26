@@ -10,12 +10,7 @@ export class MenickaService {
   public async find(): Promise<MenickoDTO[]> {
     const restaurants: Restaurant[] = require('../../data/restaurants.json');
 
-    const dateToday = new Date();
-    const dateTodayParsed = {
-      day: dateToday.getDate(),
-      month: dateToday.getMonth() + 1,
-      year: dateToday.getFullYear(),
-    };
+    const dateToday = this.getTodayDate();
 
     const allData = await this.getDataFromAllRestaurants(restaurants);
 
@@ -25,11 +20,7 @@ export class MenickaService {
       const menicka = body.querySelectorAll('div.menicka');
 
       for (const item of menicka) {
-        if (
-          item.outerHTML.indexOf(
-            `${dateTodayParsed.day}.${dateTodayParsed.month}.${dateTodayParsed.year}`,
-          ) !== -1
-        ) {
+        if (item.outerHTML.indexOf(dateToday) !== -1) {
           const restaurant = body.querySelector('.line1 > h1').innerText.trim();
           const list = item.querySelectorAll('li');
 
@@ -60,5 +51,12 @@ export class MenickaService {
       });
     });
     return Promise.all(promises);
+  }
+
+  private getTodayDate() {
+    const dateToday = new Date();
+    return `${dateToday.getDate()}.${
+      dateToday.getMonth() + 1
+    }.${dateToday.getFullYear()}`;
   }
 }
