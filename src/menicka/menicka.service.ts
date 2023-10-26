@@ -2,17 +2,14 @@ import { MenickoDTO } from './dto/menicka.dto';
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { parse } from 'node-html-parser';
-import * as windows1250 from 'windows-1250';
-import { Restaurant } from '../types';
+import { MenickaInput } from './types/menicka.input';
 
 @Injectable()
 export class MenickaService {
-  public async find(): Promise<MenickoDTO[]> {
-    const restaurants: Restaurant[] = require('../../data/restaurants.json');
-
+  public async find(input: MenickaInput): Promise<MenickoDTO[]> {
     const dateToday = this.getTodayDate();
 
-    const allData = await this.getDataFromAllRestaurants(restaurants);
+    const allData = await this.getDataFromAllRestaurants(input.ids);
 
     const menuObjects: MenickoDTO[] = [];
     allData.forEach(async ({ data }) => {
@@ -29,7 +26,7 @@ export class MenickaService {
             const price = item.querySelector('.cena');
             menuObjects.push({
               restaurant,
-              name: jidlo.text,
+              name: jidlo.text.trim(),
               price: price ? parseInt(price.text) : 0,
             });
           });
@@ -41,11 +38,11 @@ export class MenickaService {
     return menuObjects;
   }
 
-  private getDataFromAllRestaurants(restaurants: Restaurant[]) {
-    const promises = restaurants.map((restaurant) => {
+  private getDataFromAllRestaurants(ids: number[]) {
+    const promises = ids.map((id) => {
       return axios.request({
         method: 'GET',
-        url: restaurant.urlMenicka,
+        url: `https://www.menicka.cz/${id}.html`,
         responseType: 'arraybuffer',
         responseEncoding: 'binary',
       });
