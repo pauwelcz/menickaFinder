@@ -24,6 +24,10 @@ export class MenickaService {
           list.forEach((item) => {
             const jidlo = item.querySelector('.polozka');
             const price = item.querySelector('.cena');
+
+            if (input.noSoup && jidlo.parentNode.classNames === 'polevka') {
+              return;
+            }
             menuObjects.push({
               restaurant,
               name: jidlo.text.trim(),
