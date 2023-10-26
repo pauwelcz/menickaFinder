@@ -1,10 +1,10 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
-import { MinLength } from 'class-validator';
+import { ArrayMinSize, Length, MinLength } from 'class-validator';
 
 @InputType()
 export class MenickaInput {
   @Field(() => [Int], { description: 'Ids of restaurants' })
-  @MinLength(1)
+  @ArrayMinSize(1)
   ids: number[];
 
   @Field(() => Boolean, {
