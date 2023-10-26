@@ -8,7 +8,7 @@ export class MenickaResolver {
   public constructor(private menickaService: MenickaService) {}
 
   @Query(() => [MenickoDTO], { nullable: true, defaultValue: [] })
-  async find(@Args('input') input: MenickaInput): Promise<MenickoDTO[]> {
-    return this.menickaService.find(input);
+  async todayMenus(@Args('input') input: MenickaInput): Promise<MenickoDTO[]> {
+    return this.menickaService.findTodayMenus(input);
   }
 }

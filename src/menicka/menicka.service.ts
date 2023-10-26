@@ -6,7 +6,7 @@ import { MenickaInput } from './types/menicka.input';
 
 @Injectable()
 export class MenickaService {
-  public async find(input: MenickaInput): Promise<MenickoDTO[]> {
+  public async findTodayMenus(input: MenickaInput): Promise<MenickoDTO[]> {
     const dateToday = this.getTodayDate();
 
     const allData = await this.getDataFromAllRestaurants(input.ids);
