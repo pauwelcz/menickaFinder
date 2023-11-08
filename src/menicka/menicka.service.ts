@@ -2,14 +2,15 @@ import { MenickoDTO } from './dto/menicka.dto';
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { parse } from 'node-html-parser';
-import { MenickaInput } from './types/menicka.input';
+import { MenickaInput } from './dto/menicka.input';
 
 @Injectable()
 export class MenickaService {
   public async findTodayMenus(input: MenickaInput): Promise<MenickoDTO[]> {
+    const { noSoup, ids } = input;
     const dateToday = this.getTodayDate();
 
-    const allData = await this.getDataFromAllRestaurants(input.ids);
+    const allData = await this.getDataFromAllRestaurants(ids);
 
     const menuObjects: MenickoDTO[] = [];
     allData.forEach(async ({ data }) => {
@@ -23,7 +24,7 @@ export class MenickaService {
 
           list.forEach((item) => {
             const jidlo = item.querySelector('.polozka');
-            if (input.noSoup && jidlo.parentNode.classNames === 'polevka') {
+            if (noSoup && jidlo.parentNode.classNames === 'polevka') {
               return;
             }
 

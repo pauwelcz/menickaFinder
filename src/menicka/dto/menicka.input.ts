@@ -1,5 +1,5 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
-import { ArrayMinSize, Length, MinLength } from 'class-validator';
+import { ArrayMinSize } from 'class-validator';
 
 @InputType()
 export class MenickaInput {

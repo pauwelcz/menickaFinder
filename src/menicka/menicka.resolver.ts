@@ -1,7 +1,7 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { MenickoDTO } from './dto/menicka.dto';
 import { MenickaService } from './menicka.service';
-import { MenickaInput } from './types/menicka.input';
+import { MenickaInput } from './dto/menicka.input';
 
 @Resolver(() => MenickoDTO)
 export class MenickaResolver {
